@@ -20,8 +20,11 @@ export default async function handler(req, res) {
     });
 
     const data = await response.json();
+    console.log('Anthropic response:', JSON.stringify(data));
     res.status(response.status).json(data);
+
   } catch (error) {
-    res.status(500).json({ error: 'Error connecting to Anthropic API' });
+    console.log('Error:', error.message);
+    res.status(500).json({ error: error.message });
   }
 }
